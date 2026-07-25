@@ -5,16 +5,14 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-       description: This is the environment value where this workflow runs
-       default: 'dev'
-       required: true
-       type: choice
-       options:
-         - div
-         - prod
-         - staging
-         
-       
+        description: "This is the environment value where this workflow runs"
+        default: "dev"
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+          - staging
 
 jobs:
   code:
@@ -26,14 +24,16 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: [code]
+    needs: code
+
     steps:
       - name: Build Docker Container
         run: echo "Docker Container built"
 
   test:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: build
+
     steps:
       - name: Test the container
         run: echo "Testing the container"
@@ -41,7 +41,11 @@ jobs:
   deploy:
     if: ${{ inputs.environment == 'dev' }}
     runs-on: ubuntu-latest
-    needs: [build,test]
+    needs: test
+
     steps:
+      - name: Show selected environment
+        run: echo "Selected environment is ${{ inputs.environment }}"
+
       - name: Deploy the app
         run: echo "Docker Compose deployed the app"
