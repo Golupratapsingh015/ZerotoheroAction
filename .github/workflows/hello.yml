@@ -2,9 +2,7 @@
 name: Hello
 #run on an automatic trigger, whenver change is pushed to branch deployment
 on:
-  push:
-    branches:
-      - main
+ workflow_dispatch: 
 
 # These are jobs inside the workflow
 jobs:
