@@ -1,6 +1,6 @@
 # This is a comment
 name: Hello
-
+#run on an automatic trigger, whenver change is pushed to branch deployment
 on:
   push:
     branches:
