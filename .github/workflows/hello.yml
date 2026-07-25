@@ -2,7 +2,12 @@
 name: Hello
 #run on an automatic trigger, whenver change is pushed to branch deployment
 on:
- workflow_dispatch: 
+ push:
+  branches: [main]
+
+  paths:
+   -'**.html'
+    
 
 # These are jobs inside the workflow
 jobs:
