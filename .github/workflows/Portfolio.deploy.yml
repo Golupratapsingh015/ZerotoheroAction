@@ -26,6 +26,8 @@ jobs:
               #static code artifacts
             - name: Upload static files
               uses: actions/upload-pages-artifact@v1
+              with:
+                path: "."
               
             - name: Deploy to GitHub Pages
               uses: actions/deploy-pages@v4
